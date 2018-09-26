@@ -1,0 +1,71 @@
+* {
+	box-sizing: border-box;
+}
+
+.clock {
+	--clock-width: 200px;
+	--clock-height: 200px;
+	color: #524746;
+	border-radius: 50%;
+	width: var(--clock-width);
+	height: var(--clock-height);
+	margin: 1rem auto;
+	background-image: url('../img/clockbg.png');
+	background-size: var(--clock-width) var(--clock-height);
+}
+
+.clock > * {
+	position: relative;
+	height: 100%;
+	animation-name: anim-rotate;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.clock > *::before {
+	content: '';
+	position: absolute;
+	width: var(--width);
+	height: var(--height);
+	left: calc(50% - (var(--width) / 2));
+	top: calc(50% - var(--height));
+	background-color: currentColor;
+}
+
+.hour {
+	animation-duration: 43200s;
+}
+
+.hour::before {
+	--height: 60px;
+	--width: 6px;
+}
+
+.minute {
+	animation-duration: 3600s;
+	top: calc(var(--clock-height) * -1);
+}
+
+.minute::before {
+	--height: 65px;
+	--width: 4px;
+}
+
+.second {
+	animation-duration: 60s;
+	top: calc(var(--clock-height) * -2);
+}
+
+
+.second::before {
+	--height: 70px;
+	--width: 2px;
+}
+
+@keyframes anim-rotate {
+	from {
+		transform: rotate(0deg);
+	} to {
+		transform: rotate(360deg);
+	}
+}
